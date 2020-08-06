@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <div class='border-bottom'>
+        <small class='font-weight-light'> <i>Quote generated on {{header.lastModified}}</i> </h1>
+    </div>
+    </br>
+
+    <!-- HEADER TABLE -->
+    <div class='li-table'>
+        <table class="table table-sm">
+
+            <!-- HEADERS -->
+            <thead class='thead-dark'>
+                <tr class='li-rows'>
+                    <th scope="col" colspan="8">HEADER</th>
+                </tr>
+            </thead>
+
+            <!-- BODY -->
+            <tbody>
+                <tr class='li-rows'>
+                    <td scope="col" class='font-weight-bold float-left'>Customer Name: </td>
+                    <td scope="col" class='float-left'>{{header.customerName}}</td>
+
+                    <td scope="col" class='font-weight-bold float-left ml-5'>Description: </td>
+                    <td scope="col" class='float-left'>{{header.desc}}</td>
+
+                    <td scope="col" class='font-weight-bold float-left ml-5'>Length of Term (in months): </td>
+                    <td scope="col" class='float-left'>{{header.contractTerm}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <!-- T&C TABLE -->
+    <div class='li-table'>
+        <table class="table table-sm">
+
+            <!-- HEADERS -->
+            <thead class='thead-dark'>
+                <tr class='li-rows'>
+                    <th scope="col" colspan="4">TERMS AND CONDITIONS</th>
+                </tr>
+            </thead>
+
+            <!-- BODY -->
+            <tbody>
+                {% for term in terms %}
+                <tr class='li-rows'>
+                    <td scope="col" colspan="4"> 
+                        {{ term|safe }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <!-- LINE TABLE -->
+    <div class='li-table'>
+        <table class="table table-sm table-bordered">
+
+            <!-- HEADERS -->
+            <thead class='thead-dark'>
+                <tr class='li-rows'>
+                    <th scope="col" colspan="8">LINE ITEMS</th>
+                </tr>
+
+                <tr class='li-rows'>
+                    <th scope="col">Part Number</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantity New</th>
+                    <th scope="col">Quantity Existing</th>
+                    <th scope="col">NRC Price</th>
+                    <th scope="col">MRC Price</th>
+                    <th scope="col">Ext. NRC Price</th>
+                    <th scope="col">Ext. MRC Price</th>
+                </tr>
+            </thead>
+
+            <!-- BODY -->
+            <tbody>
+                {% for line in lines %}
+                    <tr class='li-rows'>
+                        <td scope="col">{{line.partNumber}}</td>
+                        <td scope="col">{{line.description}}</td>
+                        <td scope="col">{{line.qtyNew}}</td>
+                        <td scope="col">{{line.qtyExi}}</td>
+                        <td scope="col">{{usd(line.netNRC)}}</td>
+                        <td scope="col">{{usd(line.netMRC)}}</td>
+                        <td scope="col">{{usd(line.extNRC)}}</td>
+                        <td scope="col">{{usd(line.extMRC)}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <!-- HEADER TABLE -->
+    <div class='li-table'>
+        <table class="table table-sm">
+
+            <!-- HEADERS -->
+            <thead class='thead-dark'>
+                <tr class='li-rows'>
+                    <th scope="col" colspan="17">SIGNATURE & AGREEMENT
+                    </br><small class='font-weight-bold'>By signing below, you agree to the full terms of the legally-binding agreement.</small>
+                    </th>
+                </tr>
+            </thead>
+
+            <!-- BODY -->
+            <tbody>
+                <tr class='li-rows'>
+                    <td scope="col" class='font-weight-bold float-left mt-5' colspan="7">SIGNATURE</td>
+                    <td scope="col" colspan="3"></td>
+                    <td scope="col" class='font-weight-bold mt-5 float-left ml-5' colspan="7">DATE</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock content %}

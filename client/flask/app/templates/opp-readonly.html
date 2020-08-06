@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+    <form method='POST' action="#">
+        {{ form.hidden_tag() }} <!-- CSRF Token -->
+
+        <!-- Small text section -->
+        <div class='border-bottom mb-4'>
+            <small class='text-muted mr-5'>Request #: {{opp.id}}</small>
+            <small class='text-muted mr-5'>Created Date: {{opp.createdDate}}</small>
+            <small class='text-muted mr-5'>Last Modified Date: {{opp.lastModified}}</small>
+            <small class='text-muted mr-5'>Status: {{opp.requestStatus}}</small>
+            <small class='text-muted mr-5'>Request Owner: {{opp.requestOwner}}</small>
+        </div>
+
+        <!-- PAGE CONTENTS -->
+        <!------------------->
+        <fieldset class='form-group'>
+
+            <!-- HEADER ACTIONS -->
+            <div class='form-group'>
+                <!-- <button type="button" class='btn btn-danger btn-sm float-right'> <a href="{{url_for('deleteOpp', opp_id=opp.id)}}" class="btn-danger"> Delete Oppty </a></button> -->
+                <a href="{{url_for('inbox')}}" class="btn btn-primary btn-sm"> Go Back</a>
+            </div>
+
+            <h3 class='font-weight-light border-bottom'> Header Information </h3>
+            <div class="container"> </br>
+
+                <!-- FIELDS ROW 1 -->
+                <div class='form-group row'>
+
+                    <!-- CUSTOMER FIELD -->
+                        <div class='col font-weight-bold'>
+                            {{ form.customerName.label(class="form-control-label") }}:
+                        </div>
+
+                        <div class='col'>
+                            {{opp.customerName}}
+                        </div>
+                    <span class='col-1'></span>
+
+                    <!-- CONTRACT TERM FIELD -->
+                        <div class='col font-weight-bold'>
+                            {{ form.contractTerm.label(class="form-control-label") }}:
+                        </div>
+
+                        <div class='col'>
+                            <div class='col'>
+                                {{opp.contractTerm}}
+                            </div>
+                        </div>
+                    <span class='col-1'></span>
+                </div>
+
+                <!-- FIELDS ROW 2 -->
+                <div class='form-group row'>
+
+                    <!-- DESCRIPTION FIELD-->
+                        <div class='col font-weight-bold'>
+                            {{ form.desc.label(class="form-control-label") }}:
+                        </div>
+
+                
+                    <span class='col-1'>{{opp.desc}}</span>
+                    <span class='col-9'></span>
+                </div>
+
+
+                </div>
+
+            </br></br>
+
+
+            <!-- LINE ITEM TABLE -->
+            <!--------------------->
+            <h3 class='font-weight-light border-bottom'> Line Items </h3> </br>
+
+                <!-- ACTIONS -->
+                <!-- <a type="button" href="{{url_for('selectFamily', opp_id=opp.id)}}" class='btn btn-primary btn-sm float-left mb-2 mr-2'> Add Line </a> -->
+                
+                <!-- Table -->
+                <div class='li-table'>
+                    <table class="table table-sm table-hover table-bordered table-responsive">
+
+                        <!-- HEADERS -->
+                        <thead class='thead-dark'>
+                            <tr class='li-rows'>
+                                <th scope="col"></td>
+                                <th scope="col">#</th>
+                                <th scope="col">PN</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Qty New</th>
+                                <th scope="col">Qty Exi</th>             
+                                <th scope="col">List NRC</th>
+                                <th scope="col">List MRC</th>             
+                                <th scope="col">Disc % NRC</th>
+                                <th scope="col">Disc % MRC</th>             
+                                <th scope="col">Net NRC</th>
+                                <th scope="col">Net MRC</th>
+                                <th scope="col">Ext NRC</th>
+                                <th scope="col">Ext MRC</th>
+                            </tr>
+                        </thead>
+            
+                        <!-- BODY -->
+                        <tbody>
+                            {% if lineItems %}
+                                {% for line in lineItems %}
+                                    <tr class='li-rows'>
+                                        <!-- <td scope="col"><a class='btn btn-warning btn-sm' href="{{url_for('deleteLineFromBundle', opp_id=opp.id, line_id=line.id)}}">X</a></td> -->
+                                        <td scope="col"> </td>
+                                        <td scope="col">{{line.id}}</td>
+                                        <td scope="col">{{line.partNumber}}</td>
+                                        <td scope="col">{{line.description}}</td>
+                                        <td scope="col">{{line.qtyNew}}</td>
+                                        <td scope="col">{{line.qtyExi}}</td>
+                                        <td scope="col">{{usd(line.listNRC)}}</td>
+                                        <td scope="col">{{usd(line.listMRC)}}</td> 
+                                        <td scope="col">{{line.discNRC}}</td>
+                                        <td scope="col">{{line.discMRC}}</td>
+                                        <td scope="col">{{usd(line.netNRC)}}</td>
+                                        <td scope="col">{{usd(line.netMRC)}}</td>
+                                        <td scope="col">{{usd(line.extNRC)}}</td>
+                                        <td scope="col">{{usd(line.extMRC)}}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr class='li-rows'>
+                                    <td scope="col" colspan="14"><b>No Line Items!</b></td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                    
+                </br>
+
+                <!-- Financials Section -->
+                <!------------------------>
+                <h3 class='font-weight-light border-bottom'> Financials </h3> </br>
+
+                <div class='form-group row'>
+
+                    <!-- TCV -->
+                        <div class='col form-control-label ml-5'>
+                            TCV 
+                        </div>
+
+                        <div class='col'>
+                            {{usd(opp.tcv)}}
+                        </div>
+                    <span class='col-7'></span>
+                </div>
+
+                <!-- QUOTE SECTION -->
+                <!------------------->
+                <h3 class='font-weight-light border-bottom'> Quote </h3> </br>
+                <!-- <a href="{{url_for('goGetDocumentFile', opp_id=opp.id, doc_id='1')}}" class="btn btn-primary"> Generate Quote </a>
+                <a href="{{url_for('closeOpp', opp_id=opp.id)}}" class="btn btn-secondary"> Close Deal </a> -->
+                <div class='form-group row mt-3'>
+                        <div class='col form-control-label ml-5'>
+                            File Attachment: 
+                        </div>
+
+                        <div class='col'>
+                            {% if docExists %}
+                                <a href="{{url_for('goGetDocumentFileExisting', opp_id=opp.id)}}"> Existing Quote Document </a>
+                            {% else %}
+                                File hasn't been generated yet!
+                            {% endif %}
+                        </div>
+                    <span class='col-5'></span>
+                </div>
+
+        </fieldset>
+    </form>
+</div>
+
+{% endblock content %}

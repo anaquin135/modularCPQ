@@ -1,0 +1,167 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <h1 class='font-weight-light'> Register User </h1>
+    <div>
+
+        <form method='POST' action="{{url_for('register')}}">
+            {{ form.hidden_tag() }} <!-- CSRF Token -->
+
+            <!-- FIELDS BEGIN -->
+            <fieldset class='form-group'>
+                <legend class='border-bottom mb-4'></legend>
+
+                <!-- FIRST NAME FIELD -->
+                <div class='form-group'>
+                    {{ form.firstName.label(class="form-control-label") }}
+
+                    {% if form.firstName.errors %}
+                        {{ form.firstName(class="form-control is-invalid mr-3") }}
+                        <div class='invalid-feedback'>
+                            {% for error in form.firstName.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.firstName(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <!-- LAST NAME FIELD -->
+                <div class='form-group'>
+                    {{ form.lastName.label(class="form-control-label") }}
+
+                    {% if form.lastName.errors %}
+                        {{ form.lastName(class="form-control is-invalid mr-3") }}
+                        <div class='invalid-feedback'>
+                            {% for error in form.lastName.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.lastName(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <!-- EMAIL FIELD -->
+                <div class='form-group'>
+                    {{ form.email.label(class="form-control-label") }}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid mr-3") }}
+                        <div class='invalid-feedback'>
+                            {% for error in form.email.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <!-- JOB TITLE FIELD -->
+                <div class='form-group'>
+                    {{ form.jobTitle.label(class="form-control-label") }}
+
+                    {% if form.jobTitle.errors %}
+                        {{ form.jobTitle(class="form-control is-invalid mr-3") }}
+                        <div class='invalid-feedback'>
+                            {% for error in form.jobTitle.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.jobTitle(class="form-control") }}
+                    {% endif %}
+                </div>   
+
+                <!-- BUSINESS LINE FIELD -->
+                <div class='form-group'>
+                    {{ form.businessLine.label(class="form-control-label") }}
+
+                    {% if form.businessLine.errors %}
+                        {{ form.businessLine(class="form-control is-invalid mr-3") }}
+                        <div class='invalid-feedback'>
+                            {% for error in form.businessLine.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.businessLine(class="form-control") }}
+                    {% endif %}
+                </div>   
+                
+                </br><small class='text-muted'> Upon first login, the user will need to change this! </small>
+                <div class='row'>
+                    <!-- PASSWORD FIELD -->
+                    <div class='form-group col-sm'>
+                        {{ form.password.label(class="form-control-label") }}
+
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control is-invalid mr-3") }}
+                            <div class='invalid-feedback'>
+                                {% for error in form.password.errors %}
+                                    <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-control") }}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- CONF. PASSWORD FIELD -->
+                    <div class='form-group col-sm'>
+                        {{ form.confirmPassword.label(class="form-control-label") }}
+
+                        {% if form.confirmPassword.errors %}
+                            {{ form.confirmPassword(class="form-control is-invalid mr-3") }}
+                            <div class='invalid-feedback'>
+                                {% for error in form.confirmPassword.errors %}
+                                    <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirmPassword(class="form-control") }}
+                        {% endif %}
+                    </div>                          
+                </div>
+
+                <small class='text-muted'>Access level: 1 = Sales, 2 = Business Admin</small>
+                <!-- ACCESS FIELD -->
+                <div class='form-group'>
+                    {{ form.accessLevel.label(class="form-control-label") }}
+
+                    {% if form.accessLevel.errors %}
+                        {{ form.accessLevel(class="form-control is-invalid mr-3") }}
+                        <div class='invalid-feedback'>
+                            {% for error in form.accessLevel.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.accessLevel(class="form-control") }}
+                    {% endif %}
+                </div>   
+
+                <!-- IS ACTIVE FIELD -->
+                <div class='form-group'>
+                    {{ form.isActive.label(class="form-control-label") }}  
+                    {{ form.isActive(class="btn btn-primary") }}
+                </div>
+
+                <!-- SUBMIT FIELD -->
+                <div class='form-group'>
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </fieldset>
+
+        </form>
+     
+    </div>
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <h1 class='font-weight-light'> Change Password </h1>
+    <div>
+
+        <form method='POST' action="{{url_for('changePassword')}}">
+            {{ form.hidden_tag() }} <!-- CSRF Token -->
+
+            <!-- FIELDS BEGIN -->
+            <fieldset class='form-group'>
+                <legend class='border-bottom mb-4'></legend>
+
+                <!-- CURRENT PASS FIELD -->
+                <div class='form-group'>
+                    {{ form.currentPassword.label(class="form-control-label") }}
+
+                    {% if form.currentPassword.errors %}
+                        {{ form.currentPassword(class="form-control is-invalid mr-3") }}
+                        <div class='invalid-feedback'>
+                            {% for error in form.currentPassword.errors %}
+                                <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.currentPassword(class="form-control") }}
+                    {% endif %}
+                </div>
+
+                <hr>
+
+                <div class='row'>
+                    <!-- NEW PASSWORD FIELD -->
+                    <div class='form-group col'>
+                        {{ form.password.label(class="form-control-label") }}
+
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control is-invalid mr-3") }}
+                            <div class='invalid-feedback'>
+                                {% for error in form.password.errors %}
+                                    <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-control") }}
+                        {% endif %}
+                    </div>
+
+                    <!-- CONFIRM PASSWORD FIELD -->
+                    <div class='form-group col'>
+                        {{ form.confirmPassword.label(class="form-control-label") }}
+
+                        {% if form.confirmPassword.errors %}
+                            {{ form.confirmPassword(class="form-control is-invalid mr-3") }}
+                            <div class='invalid-feedback'>
+                                {% for error in form.confirmPassword.errors %}
+                                    <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirmPassword(class="form-control") }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                
+                <!-- SUBMIT FIELD -->
+                <div class='form-group'>
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </fieldset>
+
+        </form>
+     
+    </div>
+
+</div>
+
+
+{% endblock content %}

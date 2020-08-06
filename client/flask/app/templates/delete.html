@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <h1 class='font-weight-light border-bottom'> Delete Opportunity </h1>
+    <div>
+
+        <form method='POST' action="{{url_for('deleteOpp', opp_id=opp.id)}}">
+            {{ form.hidden_tag() }} <!-- CSRF Token -->
+
+                <p class='font-weight-light'>Do you wish to delete this opportunity?</br>
+                    <span style='color:red'><b>This is permanent.</b></span>
+                <p>
+                </br>
+                <!-- SUBMIT FIELD -->
+                <div class='form-group'>
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+
+            </fieldset>
+
+        </form>
+     
+    </div>
+
+</div>
+
+
+{% endblock content %}

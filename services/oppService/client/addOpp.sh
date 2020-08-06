@@ -1,0 +1,2 @@
+#curl -u INT_ADMIN:hX82ZilTgalkpqkd6dyp -i -H "Content-Type: application/json" -X POST -d '{"firstName":"bob", "lastName":"dobbs", "email":"dobbs@austinnaquin.com", "password":"dobbies", "jobTitle":"CEO"}' http://localhost:5000/api/v1.0/users/add | less
+curl -u INT_ADMIN:hX82ZilTgalkpqkd6dyp -i -H "Content-Type: application/json" -X POST -d '{"customerName":"Home Depot", "contractTerm":36, "requestOwner":1, "desc":"This is another test deal!"}' http://localhost:602/api/v1.0/opp | less

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <div class='border-bottom'>
+        <h1 class='font-weight-light'>Add Lines</h1>
+        <small class='text-muted'>Change quantities to > 0 to add the part.</small>
+    </div>
+
+    <div>
+        <form method='POST' action="{{url_for('simpleConfig', opp_id=opp.id, model=model.varName)}}">
+            {{ form.hidden_tag() }} <!-- CSRF Token -->
+            <table class="table table-sm table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Qty: New</th>
+                    <th scope="col">Qty: Exi.</th>
+                    <th scope="col">Part Number</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">List NRC</th>
+                    <th scope="col">List MRC</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    {% for part in parts %}
+                        {% if part.isActive %}
+                            <tr class='inbox-rows'>
+                                <td><input name='{{part.partNum}}-qtyNew' type='float' size='5' value='0'></td>
+                                <td><input name='{{part.partNum}}-qtyExi' type='float' size='5' value='0'></td>
+                                <th scope="row">{{part.partNum}}</th>
+                                <td>{{part.description}}</td>
+                                <td>{{usd(part.listNRC)}}</td>
+                                <td>{{usd(part.listMRC)}}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- SUBMIT FIELD -->
+            <div class='form-group'>
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    </br>
+    
+</div>
+
+
+{% endblock content %}

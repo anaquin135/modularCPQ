@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <div class='border-bottom'>
+        <h1 class='font-weight-light'>Select a Model</h1>
+        <small class='text-muted'>{{family}}</small>
+    </div>
+    </br>
+    
+    {% for model in arrModels %}
+        <a href="{{url_for('simpleConfig', opp_id=opp_id, model=model.varName)}}" class='btn btn-primary btn-lg mx-auto'> {{model.label}}</a>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

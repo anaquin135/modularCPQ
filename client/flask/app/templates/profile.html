@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <h1 class='font-weight-light border-bottom'> Profile </h1>
+    </br>
+    <div class='container ml-5 mr-5'>
+
+        <div class="mx-auto row">
+            <img src='https://img.icons8.com/pastel-glyph/64/000000/person-male.png' class="rounded-circle float-left border-primary"><!--style="width: 15%"--> 
+        </div>
+
+        <div class="mx-auto row">
+            <b class='border-bottom'>{{user.firstName}} {{user.lastName}}</b>
+        </div>
+    
+        </br>
+
+        <!-- Job Title -->
+        <div class='row'>
+            <div class='col'>
+                <span><b>Job Title:</b></span> <span>{{user.jobTitle}}</span>
+            </div>
+            <div class='col-6'></div>
+        </div>
+
+        <!-- Email -->
+        <div class='row'>
+            <div class='col'>
+                <span><b>Email:</b></span> <span>{{user.email}}</span>
+            </div>
+            <div class='col-6'></div>
+        </div>
+
+        <!-- Manager -->
+        <div class='row'>
+            <div class='col'>
+                <span><b>Manager:</b></span> <span>{{user.manager}}</span>
+            </div>
+            <div class='col-6'></div>
+        </div>
+
+        <!-- accessLevel -->
+        <div class='row'>
+            <div class='col'>
+                <span><b>Access Level:</b></span> 
+                    {% if user.accessLevel == 1 %}
+                        <span>Sales</span>
+                    {% elif user.accessLevel == 2 %}
+                        <span>Business Admin</span>
+                    {% endif %}
+            </div>
+            <div class='col-6'></div>
+        </div>
+
+        <!-- Business Line -->
+        <div class='row'>
+            <div class='col'>
+                <span><b>Business Line:</b></span> <span>{{user.businessLine}}</span>
+            </div>
+            <div class='col-6'></div>
+        </div>
+
+        </br>
+
+        <a href="{{url_for('changePassword')}}">Click here to change password...</a>
+        </br></br>
+
+    </div>
+</div>
+
+
+{% endblock content %}

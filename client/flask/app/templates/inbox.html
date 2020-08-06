@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <h1 class='font-weight-light'> Opportunity Inbox </h1>
+    <div>
+
+        <fieldset class='float-right mb-2'>
+            <button type="button" class='btn btn-primary btn-sm'> <a href="{{url_for('createNew')}}" class="btn-primary"> Create New </a></button>
+            <!-- <button type="button" class='btn btn-secondary btn-sm'> <a href="#" class="btn-secondary"> Something </a></button> -->
+        </fieldset>
+
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">   </th>
+                <th scope="col">#</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Description</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Status</th>             
+                <th scope="col">Created Date</th>
+                <th scope="col">Last Modified</th>
+                <th scope="col">TCV</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for opp in opps %}
+                    {% if opp.id %}
+                        <tr class='inbox-rows'>
+                            <td><a href="{{url_for('opportunity', opp_id=opp.id)}}" class='btn btn-sm btn-secondary'>open</a></td>
+                            <th scope="row">{{opp.id}}</th>
+                            <td>{{opp.customerName}}</td>
+                            <td>{{opp.desc}}</td>
+                            <td>{{opp.requestOwner}}</td>
+                            <td>{{opp.requestStatus}}</td>
+                            <td>{{opp.createdDate}}</td>
+                            <td>{{opp.lastModified}}</td>
+                            <td>{{usd(opp.tcv)}}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+</div>
+
+
+{% endblock content %}

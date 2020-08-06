@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <h1 class='font-weight-light'> Status Check </h1>
+    <div> </br>
+
+        <table class="table table-striped col-md-5">
+            <thead>
+              <tr>
+                <th scope="col">Service</th>
+                <th scope="col">Status</th>
+                <th scope="col">Address and Port</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+                {% for service in services %}
+                <tr>
+                    <td>{{service.name}}</td>
+                    <th scope="row ">
+                        {% if service.status == 'up' %}
+                            <span class="badge badge-success">Up!</span>
+                        {% elif service.status == 'down' %}
+                            <span class="badge badge-danger">Down!</span>
+                        {% else %}
+                            <span class="badge badge-warning">Pending!</span>
+                        {% endif %}
+                    </th>
+                    <td>{{service.address}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+          </table>
+    </div>
+
+</div>
+
+
+{% endblock content %}

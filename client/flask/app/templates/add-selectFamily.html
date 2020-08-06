@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <div class='border-bottom'>
+        <h1 class='font-weight-light'>Select a Product Family</h1>
+    </div>
+    </br>
+    
+    {% for fam in arrFamilies %}
+    <a href="{{url_for('selectModel', opp_id=opp_id, family=fam)}}" class='btn btn-primary btn-lg mx-auto'> {{fam}}</a>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}

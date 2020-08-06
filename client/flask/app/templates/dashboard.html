@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class='content-section'>
+
+    <h1 class='font-weight-light border-bottom'> <small class='text-muted'>modular</small> CPQ </h1>
+    </br>
+    <h3 class='font-weight-light'>Dashboard</h3>
+    
+
+    <div class='ml-4'>
+        </br>
+        Hi, {{user['firstName']}} {{user['lastName']}}! You currently have <i style='color: green'>{{numOpen}}</i> opportunities outstanding in your inbox. </br>
+        You have closed <i style='color: green'>{{numClosed}}</i> opportunities since you joined. Good job!
+        <br></br></br>
+    </div>
+
+
+</div>
+
+
+{% endblock content %}

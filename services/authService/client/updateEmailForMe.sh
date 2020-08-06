@@ -1,0 +1,1 @@
+curl -u INT_ADMIN:hX82ZilTgalkpqkd6dyp -i -H "Content-Type: application/json" -X PUT -d '{"email":"austinjnaquin@gmail.com"}' http://localhost:5000/api/v1.0/users/1 | less

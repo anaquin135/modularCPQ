@@ -1,0 +1,11 @@
+partNum,description,isActive,listNRC,listMRC,productModel,attrVal1,attrVal2,attrVal3,attrVal4,attrVal5
+CSNF01,Project Manager,TRUE,0,13333.33,cs_staff,1,1,1,0,0
+CSNF02,Senior Functional Consultant,TRUE,0,8333.33,cs_staff,1,1,1,0,0
+CSNF03,Junior Functional Consultant,TRUE,0,5000,cs_staff,1,1,2,0,0
+CSNF04,Business Student Intern,TRUE,0,1666.67,cs_staff,1,1,3,0,0
+CSNT01,Technical Architect,TRUE,0,13333.33,cs_staff,1,2,1,0,0
+CSNT02,Senior Developer,TRUE,0,8333.33,cs_staff,1,2,1,0,0
+CSNT03,Junior Developer,TRUE,0,5000,cs_staff,1,2,2,0,0
+CSNT04,CS Student Intern,TRUE,0,1666.67,cs_staff,1,2,3,0,0
+CSFF01,Offshore Functional Consultant,TRUE,0,1666.67,cs_staff,2,1,0,0,0
+CSFT01,Offshore Technical Consultant,TRUE,0,1666.67,cs_staff,2,2,0,0,0
